@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IVANA Fan Page </title>
+  <meta name="description" content=" [IVANA (aleena shaji)] — news, gallery, filmography." />
+  <style>
+    :root{
+      --accent:#d63384;
+      --bg:#2068bc;
+      --card:#0b1220;
+      --muted:#718cb1;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:1100px;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071021 0%, #081021 60%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:30px 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{max-width:var(--maxw); width:100%;}
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:20px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6f42c1);
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.6);
+    }
+    nav{display:flex;gap:12px;align-items:center;}
+    nav a{
+      color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:8px; font-size:15px;
+    }
+    nav a:hover{color:#fff; background:var(--glass)}
+    .cta{
+      background:var(--accent); color:#fff; padding:8px 14px; border-radius:10px; text-decoration:none;
+      box-shadow:0 6px 18px rgba(193, 32, 113, 0.12);
+    }
+
+    /* HERO */
+    .hero{
+      display:grid; grid-template-columns: 1fr 360px; gap:24px; align-items:start;
+      margin-bottom:20px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+    .hero-left h1{margin:0 0 8px 0; font-size:28px;}
+    .hero-left p{color:var(--muted); margin:0 0 12px 0;}
+    .badges{display:flex;gap:8px;margin:10px 0;}
+    .badge{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:13px;}
+
+    /* hero right image */
+    .poster{
+      height:100%;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+      overflow:hidden;
+      border-radius:12px;
+    }
+    .poster img{width:100%; height:auto; display:block; object-fit:cover;}
+
+    /* grid sections */
+    .grid2{display:grid; grid-template-columns: 1fr 360px; gap:20px; margin-top:18px;}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+    .section-title h2{margin:0;font-size:18px;}
+    .muted{color:var(--muted); font-size:14px;}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+    .gallery img{width:100%; height:120px; object-fit:cover; border-radius:8px; cursor:pointer; display:block;}
+
+    /* Filmography cards */
+    .films{display:flex;flex-direction:column;gap:12px}
+    .film{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .film .thumb{width:72px;height:72px;border-radius:8px;flex-shrink:0;object-fit:cover}
+    .film h3{margin:0;font-size:15px;}
+    .film p{margin:2px 0 0 0;color:var(--muted);font-size:13px}
+
+    /* News */
+    .news-list{display:flex;flex-direction:column;gap:10px}
+    .news-item{padding:10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+    .news-item h4{margin:0;font-size:15px}
+    .news-item p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+    /* contact */
+    .contact form{display:flex;flex-direction:column;gap:8px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#e6eef6}
+    input::placeholder, textarea::placeholder{color:var(--muted)}
+    button{background:var(--accent); color:#fff;border:none;padding:10px;border-radius:8px; cursor:pointer}
+
+    /* footer */
+    footer{margin-top:24px;color:var(--muted);text-align:center;font-size:13px}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:80}
+    .modal.open{display:flex}
+    .modal img{max-width:90%; max-height:85%; border-radius:8px; box-shadow:0 18px 60px rgba(0,0,0,0.8)}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero, .grid2{grid-template-columns:1fr}
+      .poster img{height:320px; object-fit:cover}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:520px){
+      .gallery img{height:100px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">AF</div>
+        <div>
+          <div style="font-weight:700">[IVANA] Fan Zone</div>
+          <div class="muted" style="font-size:13px">All news, media & fan work</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#filmography">Filmography</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#news">News</a>
+        <a class="cta" href="#contact">Join Fans</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="card hero-left">
+        <h1>[IVANA(aleena shaji)]</h1>
+        <p class="muted">Official fan site for fans — updates, photos, filmography, and community posts.</p>
+        <div class="badges">
+          <div class="badge">Brith name • [Aleena shaji]</div>
+          <div class="badge">Born: [2000-02-25]</div>
+          <div class="badge">Age: [25–Present]</div>
+        </div>
+
+        <p style="margin-top:8px">
+          Short intro / bio.known by her stage name Ivana, is an Indian actress who works mainly in Tamil cinema and few Malayalam films and Telugu films. Starred as a child artist in Malayalam films, and debuted as lead in Naachiyaar (2018). She later did many commercially successful films like Love Today (2022) and Single (2025).
+        </p>
+
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <a class="cta" href="#news">Latest News</a>
+          <a style="background:transparent;color:var(--muted);padding:8px 12px;border-radius:8px;text-decoration:none" href="#gallery">See Photos</a>
+        </div>
+      </div>
+
+      <aside class="card poster" aria-hidden="false">
+        <!-- Replace the src with a high-quality image of the actor you have rights to use -->
+        <img src="sunset.jpg.jpg" alt="[IVANA] portrait">
+      </aside>
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="grid2">
+      <div class="card">
+        <div class="section-title">
+          <h2 id="filmography">Filmography</h2>
+          <div class="muted">2025 movie list</div>
+        </div>
+
+        <div class="films">
+          <!-- repeat this .film block for each entry -->
+          <div class="film">
+            <img class="thumb" src="dragon.jpg.jpg" alt="Movie 1 poster">
+            <div>
+              <h3>Movie Title DRAGON (2025)</h3>
+              <p>Role: Character Name  Harini mayilvahanana short name (nikita)</p>
+            </div>
+          </div>
+
+          <div class="film">
+            <img class="thumb" src="single.png.jpg" alt="Movie 2 poster">
+            <div>
+              <h3>Single / Film (2025)</h3>
+              <p>Role: Character —harini</p>
+            </div>
+          </div>
+
+          <!-- Add more as needed -->
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>Contact & Social</h2>
+          <div class="muted">Follow & connect</div>
+        </div>
+
+        <p class="muted">Official social links and fan contact.</p>
+        <p style="margin:10px 0">
+          <strong>Instagram:</strong> <a href="#" style="color:var(--accent)">@i__ivana_</a><br>
+          <strong>Twitter/X:</strong> <a href="#" style="color:var(--accent)">@i__ivana_</a>
+        </p>
+
+        <div style="margin-top:12px">
+          <a class="cta" href="#gallery">Submit Fan Art</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="card" id="gallery" style="margin-top:18px">
+      <div class="section-title">
+        <h2>Gallery</h2>
+        <div class="muted">Click images to enlarge</div>
+      </div>
+
+      <div class="gallery">
+        <img src="ivana.jpg.jpg" alt="gallery 1">
+        <img src="ivana2.jpg.jpg" alt="gallery 2">
+        <img src="sunset4.jpg.jpg" alt="gallery 3">
+        <img src="ivana78.png.jpg" alt="gallery 4">
+        <img src="ivana5.png.jpg" alt="gallery 5">
+        <img src="ivana6.png.jpg" alt="gallery 6">
+        <img src="ivana7.png.jpg" alt="gallery 7">
+         <img src="ivana8.jpg.jpg" alt="gallery 8">
+          <img src="sunset2.jpg.jpg" alt="gallery 9">
+           <img src="ivana10.jpg.jpg" alt="gallery 10">
+      </div>
+    </section>
+    <!-- News -->
+    <section class="card" id="news" style="margin-top:18px">
+      <div class="section-title">
+        <h2>News & Updates</h2>
+        <div class="muted">Latest posts</div>
+      </div>
+
+      <div class="news-list">
+        <article class="news-item">
+          <h4>New film announced — [jiiva 47 ]</h4>
+          <div class="muted" style="font-size:12px">Published: Official not been announced yet</div>
+          <p>upcoming movie no information.</p>
+        </article>
+
+        <article class="news-item">
+          <h4>Interview: [kalvan] — Highlights</h4>
+          <div class="muted" style="font-size:12px">Published: 2024</div>
+          <p>kemban abandons his adopted geanfather in a forest to die at the hands of animal so that he would be compensated by the forest.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="card contact" id="contact" style="margin-top:18px">
+      <div class="section-title">
+        <h2>Join the Fan Club</h2>
+        <div class="muted">Send a message</div>
+      </div>
+
+      <!-- This form uses mailto so it works without a server. For real sites, use a server or form provider -->
+      <form onsubmit="event.preventDefault(); location='mailto:youremail@example.com?subject=' + encodeURIComponent('Fan message from ' + (document.getElementById('name').value||'Visitor')) + '&body=' + encodeURIComponent(document.getElementById('message').value||'');">
+        <input id="name" type="text" placeholder="Your name" required>
+        <input id="email" type="email" placeholder="Your email (optional)">
+        <textarea id="message" placeholder="Message for the fan club / shoutout" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="muted">Made with ♥ by a fan • message my gmail mohammednixzn@gmail.com</div>
+      <div class="muted"> power by mohammednizam.A </div>
+    </footer>
+  </div>
+
+  <!-- Image modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true" onclick="closeModal()">
+    <img id="modalImg" src="" alt="enlarged image">
+  </div>
+
+  <script>
+    // Simple gallery modal
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click', e=>{
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        modalImg.src = e.target.src;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+      });
+    });
+    function closeModal(){
+      const modal = document.getElementById('modal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    // close modal on ESC
+    document.addEventListener('keydown', e=>{
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
